@@ -185,6 +185,15 @@
         .pulse-animation {
             animation: pulse 2s infinite;
         }
+        .rickroll {
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .rickroll:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body class="min-h-screen py-8 px-4">
@@ -192,13 +201,14 @@
         <!-- En-tête -->
         <header class="text-center mb-12 music-border pt-8 pb-8">
             <h1 class="text-4xl md:text-6xl font-bold mb-4 text-[#594a3c]">Menu Week-end Musical</h1>
-            <p class="text-lg text-[#867865] max-w-md mx-auto">Festin symphonique sans prétention pour musiciens affamés.</p>
+            <p class="text-lg text-[#867865] max-w-md mx-auto">Festin symphonique sans prétention pour musiciens affamés</p>
             <div class="flex justify-center space-x-2 mt-6">
                 <span class="music-icon text-2xl">🎻</span>
                 <span class="music-icon text-2xl" style="animation-delay: 0.5s">🎺</span>
                 <span class="music-icon text-2xl" style="animation-delay: 1s">🎷</span>
                 <span class="music-icon text-2xl" style="animation-delay: 1.5s">🎹</span>
                 <span class="music-icon text-2xl" style="animation-delay: 2s">🥁</span>
+                <span class="music-icon text-2xl" style="animation-delay: 2.5s">🎵</span>
             </div>
         </header>
 
@@ -213,7 +223,7 @@
                 
                 <!-- Déjeuner -->
                 <div class="menu-section mb-8">
-                    <h3 class="text-xl font-semibold text-[#867865] mb-5 pl-3 border-l-4 border-[#d2ba98]">Petit-déjeuner</h3>
+                    <h3 class="text-xl font-semibold text-[#867865] mb-5 pl-3 border-l-4 border-[#d2ba98]">Déjeuner</h3>
                     
                     <div class="menu-item mb-6">
                         <div class="flex items-center mb-2">
@@ -233,7 +243,7 @@
                 
                 <!-- Midi -->
                 <div class="menu-section mb-8">
-                    <h3 class="text-xl font-semibold text-[#867865] mb-5 pl-3 border-l-4 border-[#d2ba98]">Déjeuner</h3>
+                    <h3 class="text-xl font-semibold text-[#867865] mb-5 pl-3 border-l-4 border-[#d2ba98]">Dîner</h3>
                     
                     <div class="menu-item mb-6">
                         <div class="flex items-center mb-2">
@@ -249,6 +259,21 @@
                         <div class="quote-container">
                             <div class="quote ml-12 p-3 text-[#755e47] bg-[#f7f4ed] rounded-md">
                                 <p>Plus d'une quarantaine d'oignons seront sacrifiés à l'hôtel de votre appétit légendaire pour cette sauce. Un moment de silence s'impose. Ah oui, et pour ceux qui se demandent le rapport avec l'emoji, c'est la saucisse. J'ai pas trouvé mieux !</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item mb-6">
+                        <div class="flex items-center mb-2">
+                            <span class="text-3xl mr-3 float-icon">🍫</span>
+                            <div>
+                                <p class="text-lg font-semibold text-[#594a3c]">Gâteau au Chocolat</p>
+                                <span class="text-xs text-[#867865]">Option sans gluten disponible</span>
+                            </div>
+                        </div>
+                        <div class="quote-container">
+                            <div class="quote ml-12 p-3 text-[#755e47] bg-[#f7f4ed] rounded-md">
+                                <p>Parce qu'on sait que la musique, ça creuse. Et que le chocolat, c'est bon pour le moral. Et pour la musique. Et pour tout, en fait.</p>
                             </div>
                         </div>
                     </div>
@@ -268,7 +293,7 @@
                         </div>
                         <div class="quote-container">
                             <div class="quote ml-12 p-3 text-[#755e47] bg-[#f7f4ed] rounded-md">
-                                <p>Primo : avouez que le titre en jette. Secondo, prenez note que 1.2 kg de pépites de chocolat, à raison de 4500 pépites pas kg environ, ça nous donne grosso modo 90 pépites par musicien. C'est fou non ? Non ? Bon.</p>
+                                <p>Primo : avouez que le titre en jette. Secondo, prenez note que 1.2 kg de pépites de chocolat, à raison de 4500 pépites par kg environ, ça nous donne grosso modo 90 pépites par musicien. C'est fou non ? Non ? Bon.</p>
                             </div>
                         </div>
                     </div>
@@ -276,7 +301,7 @@
                 
                 <!-- Soir -->
                 <div class="menu-section">
-                    <h3 class="text-xl font-semibold text-[#867865] mb-5 pl-3 border-l-4 border-[#d2ba98]">Dîner</h3>
+                    <h3 class="text-xl font-semibold text-[#867865] mb-5 pl-3 border-l-4 border-[#d2ba98]">Souper</h3>
                     
                     <div class="menu-item mb-6">
                         <div class="flex items-center mb-2">
@@ -304,13 +329,13 @@
                 
                 <!-- Déjeuner -->
                 <div class="menu-section mb-8">
-                    <h3 class="text-xl font-semibold text-[#867865] mb-5 pl-3 border-l-4 border-[#a19377]">Petit-déjeuner</h3>
+                    <h3 class="text-xl font-semibold text-[#867865] mb-5 pl-3 border-l-4 border-[#a19377]">Déjeuner</h3>
                     
                     <div class="menu-item mb-6">
                         <div class="flex items-center mb-2">
                             <span class="text-3xl mr-3 float-icon">🥔</span>
                             <div>
-                                <p class="text-lg font-semibold text-[#594a3c]">Rösti & Œufs</p>
+                                <p class="text-lg font-semibold text-[#594a3c]">Rösti, Lard & Œufs</p>
                                 <span class="text-xs text-[#867865]">Option sans gluten disponible</span>
                             </div>
                         </div>
@@ -324,7 +349,7 @@
                 
                 <!-- Midi -->
                 <div class="menu-section mb-8">
-                    <h3 class="text-xl font-semibold text-[#867865] mb-5 pl-3 border-l-4 border-[#a19377]">Déjeuner</h3>
+                    <h3 class="text-xl font-semibold text-[#867865] mb-5 pl-3 border-l-4 border-[#a19377]">Dîner</h3>
                     
                     <div class="menu-item mb-6">
                         <div class="flex items-center mb-2">
@@ -418,6 +443,9 @@
                 <span class="music-icon text-xl" style="animation-delay: 0.3s">🎵</span>
                 <span class="music-icon text-xl" style="animation-delay: 0.6s">🎶</span>
                 <span class="music-icon text-xl" style="animation-delay: 0.9s">🎵</span>
+            </div>
+            <div class="mt-8">
+                <p class="text-xs opacity-70 rickroll" onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')">Informations complémentaires sur l'événement</p>
             </div>
         </footer>
     </div>
