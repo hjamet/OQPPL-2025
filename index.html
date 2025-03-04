@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Week-end Musical de l'Orchestre 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300;400;500;600;700&display=swap">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #faf8f2;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c8c2b6' fill-opacity='0.15'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        h1, h2, h3 {
+            font-family: 'Libre Baskerville', serif;
+        }
+        .menu-card {
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(224,205,174,0.3) 0%, rgba(255,255,255,0) 70%);
+            top: -100px;
+            left: -100px;
+            z-index: 0;
+        }
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        .quote-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .quote {
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+            border-radius: 0.375rem;
+            transition: all 0.3s ease;
+        }
+        .quote:hover {
+            transform: translateX(5px);
+        }
+        .quote::before {
+            content: '"';
+            position: absolute;
+            font-size: 4rem;
+            color: rgba(190, 185, 170, 0.15);
+            top: -20px;
+            left: -15px;
+            z-index: -1;
+        }
+        .day-label {
+            position: relative;
+            overflow: hidden;
+        }
+        .day-label::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(134,120,101,0.3) 0%, rgba(134,120,101,0.7) 50%, rgba(134,120,101,0.3) 100%);
+        }
+        .menu-section {
+            position: relative;
+        }
+        .menu-item {
+            position: relative;
+            isolation: isolate;
+        }
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 100%;
+            background-color: rgba(231, 226, 218, 0.5);
+            left: -10px;
+            top: 0;
+            z-index: -1;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        .menu-item:hover::before {
+            width: calc(100% + 20px);
+        }
+        .note-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .note-card::before {
+            content: '♪ ♫ ♪';
+            position: absolute;
+            color: rgba(134, 120, 101, 0.1);
+            font-size: 100px;
+            top: -30px;
+            right: -20px;
+            transform: rotate(10deg);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-icon {
+            animation: float 5s ease-in-out infinite;
+        }
+        .music-icon {
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+        .music-border {
+            position: relative;
+        }
+        .music-border::before, .music-border::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: repeating-linear-gradient(90deg, #867865, #867865 10px, transparent 10px, transparent 25px);
+        }
+        .music-border::before {
+            top: 0;
+        }
+        .music-border::after {
+            bottom: 0;
+        }
+        .dietary-note {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            margin-left: 0.5rem;
+        }
+        .footnote {
+            font-size: 0.85rem;
+            border-left: 3px solid #d2ba98;
+            padding-left: 1rem;
+            margin-top: 1rem;
+            font-style: italic;
+            color: #755e47;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .dietary-info {
+            transition: all 0.3s ease;
+        }
+        .dietary-info:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .dietary-section-title {
+            position: relative;
+            display: inline-block;
+        }
+        .dietary-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: #d2ba98;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .dietary-section-title:hover::after {
+            width: 80%;
+        }
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4">
+    <div class="max-w-4xl mx-auto">
+        <!-- En-tête -->
+        <header class="text-center mb-12 music-border pt-8 pb-8">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 text-[#594a3c]">Menu Week-end Musical</h1>
+            <p class="text-lg text-[#867865] max-w-md mx-auto">Un festin symphonique pour musiciens affamés</p>
+            <div class="flex justify-center space-x-2 mt-6">
+                <span class="music-icon text-2xl">🎻</span>
+                <span class="music-icon text-2xl" style="animation-delay: 0.5s">🎺</span>
+                <span class="music-icon text-2xl" style="animation-delay: 1s">🎷</span>
+                <span class="music-icon text-2xl" style="animation-delay: 1.5s">🎹</span>
+                <span class="music-icon text-2xl" style="animation-delay: 2s">🥁</span>
+            </div>
+        </header>
+
+        <!-- Menu -->
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <!-- Samedi -->
+            <section class="menu-card bg-white rounded-2xl p-7 shadow-md relative z-10">
+                <div class="absolute top-0 right-0 bg-[#d2ba98] text-white py-1 px-6 rounded-bl-lg rounded-tr-lg font-semibold">
+                    Jour 1
+                </div>
+                <h2 class="day-label text-3xl font-bold text-[#594a3c] mb-8 pb-2">Samedi</h2>
+                
+                <!-- Déjeuner -->
+                <div class="menu-section mb-8">
+                    <h3 class="text-xl font-semibold text-[#867865] mb-5 pl-3 border-l-4 border-[#d2ba98]">Petit-déjeuner</h3>
+                    
+                    <div class="menu-item mb-6">
+                        <div class="flex items-center mb-2">
+                            <span class="text-3xl mr-3 float-icon">🍞</span>
+                            <div>
+                                <p class="text-lg font-semibold text-[#594a3c]">Pain & Confiture</p>
+                                <span class="text-xs text-[#867865]">Option sans gluten disponible</span>
+                            </div>
+                        </div>
+                        <div class="quote-container">
+                            <div class="quote ml-12 p-3 text-[#755e47] bg-[#f7f4ed] rounded-md">
+                                <p>Soyons franc. Il n'y a rien à faire. Mais plus il y a de trucs marqués, plus le menu a l'air ouf, donc on n'a pas résisté à la tentation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Midi -->
+                <div class="menu-section mb-8">
+                    <h3 class="text-xl font-semibold text-[#867865] mb-5 pl-3 border-l-4 border-[#d2ba98]">Déjeuner</h3>
+                    
+                    <div class="menu-item mb-6">
+                        <div class="flex items-center mb-2">
+                            <span class="text-3xl mr-3 float-icon">🌭</span>
+                            <div>
+                                <p class="text-lg font-semibold text-[#594a3c]">Saucisses de Veau, Pâtes & Sauce à l'Oignon</p>
+                                <div class="flex flex-wrap gap-1 mt-1">
+                                    <span class="dietary-note bg-[#e9e5dd] text-[#594a3c]">Option végé</span>
+                                    <span class="dietary-note bg-[#e9e5dd] text-[#594a3c]">Option sans gluten</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quote-container">
+                            <div class="quote ml-12 p-3 text-[#755e47] bg-[#f7f4ed] rounded-md">
+                                <p>Plus d'une quarantaine d'oignons seront sacrifiés à l'hôtel de votre appétit légendaire pour cette sauce. Un moment de silence s'impose. Ah oui, et pour ceux qui se demandent le rapport avec l'emoji, c'est la saucisse. J'ai pas trouvé mieux !</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Goûter -->
+                <div class="menu-section mb-8">
+                    <h3 class="text-xl font-semibold text-[#867865] mb-5 pl-3 border-l-4 border-[#d2ba98]">Goûter</h3>
+                    
+                    <div class="menu-item mb-6">
+                        <div class="flex items-center mb-2">
+                            <span class="text-3xl mr-3 float-icon">🍪</span>
+                            <div>
+                                <p class="text-lg font-semibold text-[#594a3c]">Cookie Géant</p>
+                                <span class="text-xs text-[#867865]">Option sans gluten disponible</span>
+                            </div>
+                        </div>
+                        <div class="quote-container">
+                            <div class="quote ml-12 p-3 text-[#755e47] bg-[#f7f4ed] rounded-md">
+                                <p>Primo : avouez que le titre en jette. Secondo, prenez note que 1.2 kg de pépites de chocolat, à raison de 4500 pépites pas kg environ, ça nous donne grosso modo 90 pépites par musicien. C'est fou non ? Non ? Bon.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Soir -->
+                <div class="menu-section">
+                    <h3 class="text-xl font-semibold text-[#867865] mb-5 pl-3 border-l-4 border-[#d2ba98]">Dîner</h3>
+                    
+                    <div class="menu-item mb-6">
+                        <div class="flex items-center mb-2">
+                            <span class="text-3xl mr-3 float-icon">🧀</span>
+                            <div>
+                                <p class="text-lg font-semibold text-[#594a3c]">Raclette</p>
+                                <span class="text-xs text-[#867865]">Option sans lactose: crêpes au lait végétal</span>
+                            </div>
+                        </div>
+                        <div class="quote-container">
+                            <div class="quote ml-12 p-3 text-[#755e47] bg-[#f7f4ed] rounded-md">
+                                <p>On est d'accord que dans le fromage, il y a des trous ? Bon. Donc, plus il y a de fromage, plus il y a de trou. Par conséquent, plus il y a de fromage..., moins il y a de fromage ! Mangez donc sans mauvaise conscience aucune. (argument inattaquable fonctionnant aussi, notez le bien, pour nombres d'autres plats légers dans le même style)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Dimanche -->
+            <section class="menu-card bg-white rounded-2xl p-7 shadow-md relative z-10">
+                <div class="absolute top-0 right-0 bg-[#a19377] text-white py-1 px-6 rounded-bl-lg rounded-tr-lg font-semibold">
+                    Jour 2
+                </div>
+                <h2 class="day-label text-3xl font-bold text-[#594a3c] mb-8 pb-2">Dimanche</h2>
+                
+                <!-- Déjeuner -->
+                <div class="menu-section mb-8">
+                    <h3 class="text-xl font-semibold text-[#867865] mb-5 pl-3 border-l-4 border-[#a19377]">Petit-déjeuner</h3>
+                    
+                    <div class="menu-item mb-6">
+                        <div class="flex items-center mb-2">
+                            <span class="text-3xl mr-3 float-icon">🥔</span>
+                            <div>
+                                <p class="text-lg font-semibold text-[#594a3c]">Rösti & Œufs</p>
+                                <span class="text-xs text-[#867865]">Option sans gluten disponible</span>
+                            </div>
+                        </div>
+                        <div class="quote-container">
+                            <div class="quote ml-12 p-3 text-[#755e47] bg-[#f7f4ed] rounded-md">
+                                <p>C'est une approche en traître. On commence l'air de rien avec le Cookie géant. Ensuite la raclette. Et quand vous pensiez pouvoir vous en tirer en ayant simplement doublé votre charge pondérale, PAF. Mais ce sera fait avec amour. Et fatigue.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Midi -->
+                <div class="menu-section mb-8">
+                    <h3 class="text-xl font-semibold text-[#867865] mb-5 pl-3 border-l-4 border-[#a19377]">Déjeuner</h3>
+                    
+                    <div class="menu-item mb-6">
+                        <div class="flex items-center mb-2">
+                            <span class="text-3xl mr-3 float-icon">🌶️</span>
+                            <div>
+                                <p class="text-lg font-semibold text-[#594a3c]">Chili con carne & sin carne</p>
+                                <div class="flex flex-wrap gap-1 mt-1">
+                                    <span class="dietary-note bg-[#e9e5dd] text-[#594a3c]">Option végé</span>
+                                    <span class="dietary-note bg-[#e9e5dd] text-[#594a3c]">Option sans gluten</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quote-container">
+                            <div class="quote ml-12 p-3 text-[#755e47] bg-[#f7f4ed] rounded-md">
+                                <p>Point hilarant : Si on prend les initiales, on obtient CCCSC, ou C3SC, ce qui est l'acronyme exacte de la société Cardiff Third Sector Council, un organisme caritatif qui se proclame "LGBTQ+ friendly" et "women-owned". Comme quoi...*</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item mb-6">
+                        <div class="flex items-center mb-2">
+                            <span class="text-3xl mr-3 float-icon">🍎</span>
+                            <p class="text-lg font-semibold text-[#594a3c]">Salade de Fruits</p>
+                        </div>
+                        <div class="quote-container">
+                            <div class="quote ml-12 p-3 text-[#755e47] bg-[#f7f4ed] rounded-md">
+                                <p>Habile diversion tactique de fin de week-end pour vous faire croire que vous avez mangé sainement et avec modération.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Phrase finale -->
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-[#594a3c] mb-6">
+                <span class="inline-block transform hover:scale-110 transition-transform" style="transition-duration: 0.3s">Bon Appétit ! 🐙</span>
+                <span class="inline-block mx-4">Et</span>
+                <span class="inline-block transform hover:scale-110 transition-transform" style="transition-duration: 0.3s">Jouez bien ! 🦦</span>
+            </h2>
+        </div>
+        
+        <!-- Note en bas -->
+        <div class="note-card bg-gradient-to-br from-[#f3f0e8] to-[#e7e2da] rounded-2xl p-7 mb-12 shadow-md">
+            <div class="flex items-start mb-4">
+                <span class="text-4xl mr-4">🎻</span>
+                <h3 class="text-xl font-bold text-[#594a3c]">PS</h3>
+            </div>
+            <div class="space-y-3 text-[#755e47]">
+                <p>On n'est pas du tout professionnels, donc ne nous en voulez pas trop si on brûle la cuisine, si les rösti ont un goût de carton ou si vous mangez à 17h.</p>
+                <p>Promis, on va faire tout ce qu'on peut.</p>
+                <p class="font-bold mt-4 text-[#594a3c]">Genre 16h30, au plus tard.</p>
+            </div>
+        </div>
+        
+        <!-- Informations diététiques -->
+        <div class="bg-white rounded-2xl p-5 mb-12 shadow-md">
+            <h3 class="text-xl font-bold text-[#594a3c] mb-4 text-center dietary-section-title">Informations Diététiques</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-[#f7f4ed] p-3 rounded-lg dietary-info transition-all duration-300">
+                    <p class="font-semibold text-[#594a3c] mb-2 flex items-center pulse-animation">
+                        <span class="mr-2">🌱</span> Options Végétariennes
+                    </p>
+                    <p class="text-sm text-[#755e47]">Alternatives végétariennes disponibles pour les plats principaux.</p>
+                </div>
+                <div class="bg-[#f7f4ed] p-3 rounded-lg dietary-info transition-all duration-300" style="animation-delay: 0.2s">
+                    <p class="font-semibold text-[#594a3c] mb-2 flex items-center pulse-animation" style="animation-delay: 0.2s">
+                        <span class="mr-2">🌾</span> Sans Gluten
+                    </p>
+                    <p class="text-sm text-[#755e47]">Des options sans gluten sont disponibles pour tous les repas.</p>
+                </div>
+                <div class="bg-[#f7f4ed] p-3 rounded-lg dietary-info transition-all duration-300" style="animation-delay: 0.4s">
+                    <p class="font-semibold text-[#594a3c] mb-2 flex items-center pulse-animation" style="animation-delay: 0.4s">
+                        <span class="mr-2">🥛</span> Sans Lactose
+                    </p>
+                    <p class="text-sm text-[#755e47]">Alternative sans lactose pour la raclette: délicieuses crêpes au lait végétal.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Note de bas de page -->
+        <div class="footnote mb-12">
+            <p class="text-[#755e47]">* En fait, je ne sais pas du tout ce que ce "Comme quoi" sous-entend, mais d'expérience : 1. Tout le monde trouve toujours une explication à un Comme quoi... en fin de phrase, 2. personne ne lit jamais les notes de bas de page sur les sites web. Enfin presque personne.</p>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="text-center text-sm text-[#867865] pt-8 pb-8 music-border">
+            <p>Week-end Musical 2025 | Bon appétit et bonne musique!</p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <span class="music-icon text-xl" style="animation-delay: 0.3s">🎵</span>
+                <span class="music-icon text-xl" style="animation-delay: 0.6s">🎶</span>
+                <span class="music-icon text-xl" style="animation-delay: 0.9s">🎵</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Animation simple pour les éléments au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuCards = document.querySelectorAll('.menu-card');
+            const dietaryInfo = document.querySelectorAll('.dietary-info');
+            
+            menuCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 300 * index);
+            });
+            
+            dietaryInfo.forEach((info, index) => {
+                info.style.opacity = '0';
+                info.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    info.style.opacity = '1';
+                    info.style.transform = 'translateY(0)';
+                }, 1000 + (200 * index));
+            });
+        });
+    </script>
+</body>
+</html>
